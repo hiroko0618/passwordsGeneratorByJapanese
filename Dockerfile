@@ -33,11 +33,12 @@ RUN apt update \
 	mecab-ipadic-neologd
 
 ENV build_deps_phpmecab autoconf git
-COPY ./php/php.mecab.ini /usr/local/etc/php/conf.d/
+#COPY ./php/php.mecab.ini /usr/local/etc/php/conf.d/
+COPY ./php/php.ini /usr/local/etc/php/conf.d/
 RUN apt update \
     && apt install -y --no-install-recommends autoconf git \
     && apt-get install -y libmecab2 \
-    && git clone https://github.com/rsky/php-mecab.git \
+    && git clone https://github.com/rsky/php-mecab \
     && cd ./php-mecab/mecab \
     && phpize \
     && ./configure --with-php-config=/usr/local/bin/php-config --with-mecab=/usr/local/bin/mecab-config \
@@ -47,3 +48,4 @@ RUN apt update \
     && cd \
     && rm -rf php-mecab \
     && apt remove -y ${build_deps_phpmecab}
+
