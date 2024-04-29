@@ -33,8 +33,7 @@ RUN apt update \
 	mecab-ipadic-neologd
 
 ENV build_deps_phpmecab autoconf git
-#COPY ./php/php.mecab.ini /usr/local/etc/php/conf.d/
-COPY ./php/php.ini /usr/local/etc/php/conf.d/
+COPY ./php.mecab.ini /usr/local/etc/php/conf.d/
 RUN apt update \
     && apt install -y --no-install-recommends autoconf git \
     && apt-get install -y libmecab2 \
